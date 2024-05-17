@@ -9,7 +9,8 @@ class Camp extends CI_Model {
 	public function getCampus()
 	{
 		$sql = "SELECT campus.id, campus.name, campus.description, campus.status
-				FROM campus";
+				FROM campus
+				ORDER BY campus.created_at DESC";
 		
 		$query = $this->db->query($sql);
 		return $query->result_array();
@@ -17,7 +18,7 @@ class Camp extends CI_Model {
 
 	
 	public function insertCampus($data) {
-        $this->db->insert('scholarship', $data);
+        $this->db->insert('campus', $data);
     }
 
 	public function getSingleCampus($scholarId)
@@ -34,10 +35,10 @@ class Camp extends CI_Model {
 		}
 	}
 
-	public function updateScholar($scholarId, $data)
+	public function updateCampus($campusId, $data)
 	{
-		$this->db->where('id', $scholarId);
-		$this->db->update('scholarship', $data);
+		$this->db->where('id', $campusId);
+		$this->db->update('campus', $data);
 	}
 	
 	

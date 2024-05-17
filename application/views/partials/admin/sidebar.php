@@ -39,15 +39,11 @@
 
 
 	  <li>
-		<a href="charts-apexcharts.html">
-		  <i class="bi bi-circle"></i><span>ApexCharts</span>
+		<a href="<?=base_url('admin/courses') ?>">
+		  <i class="bi bi-circle"></i><span>Courses</span>
 		</a>
 	  </li>
-	  <li>
-		<a href="charts-echarts.html">
-		  <i class="bi bi-circle"></i><span>ECharts</span>
-		</a>
-	  </li>
+	  
 	</ul>
   </li>
 

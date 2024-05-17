@@ -1,16 +1,16 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Scholarships extends CI_Controller
+class Courses extends CI_Controller
 {
 
 	public function index()
 	{
-		$data['scholarships'] = $this->Scholarship->getScholarships();
+		$data['courses'] = $this->Course->getCourses();
 		$this->load->view('partials/header');
 		$this->load->view('partials/admin/navbar');
 		$this->load->view('partials/admin/sidebar');
-		$this->load->view('admin/scholar/index', $data);
+		$this->load->view('admin/courses/index', $data);
 		$this->load->view('partials/footer');
 	}
 
@@ -19,60 +19,58 @@ class Scholarships extends CI_Controller
 		$this->load->view('partials/header');
 		$this->load->view('partials/admin/navbar');
 		$this->load->view('partials/admin/sidebar');
-		$this->load->view('admin/scholar/create');
+		$this->load->view('admin/courses/create');
 		$this->load->view('partials/footer');
 	}
 
 	public function store()
 	{
 		$data = array(
+			'campus_id' => $this->input->post('campus_id'),
 			'name' => $this->input->post('name'),
-			'code' => $this->input->post('code'),
-			'type' => $this->input->post('type'),
+			'status' => $this->input->post('status'),
 		);
 
-		$this->Scholarship->insertScholarship($data);
+		$this->Course->insertCourse($data);
 
 		// Set flashdata message
-		$this->session->set_flashdata('success', 'Scholarship saved successfully.');
+		$this->session->set_flashdata('success', 'Course Saved Successfully.');
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
-
-	public function show($scholarId)
+	public function show($courseId)
 	{
-		$data['scholar'] = $this->Scholarship->getScholar($scholarId);
+		$data['courses'] = $this->Course->getCourse($courseId);
 
 		$this->load->view('partials/header');
 		$this->load->view('partials/admin/navbar');
 		$this->load->view('partials/admin/sidebar');
-		$this->load->view('admin/scholar/show', $data);
+		$this->load->view('admin/courses/show', $data);
 		$this->load->view('partials/footer');
 	}
-	public function edit($scholarId)
+	public function edit($courseId)
 	{
-		$data['scholar'] = $this->Scholarship->getScholar($scholarId);
+		$data['courses'] = $this->Course->getCourse($courseId);
 
 		$this->load->view('partials/header');
 		$this->load->view('partials/admin/navbar');
 		$this->load->view('partials/admin/sidebar');
-		$this->load->view('admin/scholar/edit', $data);
+		$this->load->view('admin/courses/edit', $data);
 		$this->load->view('partials/footer');
 	}
 
-	public function update($scholarId)
+	public function update($courseId)
 	{
 		$data = array(
+			'campus_id' => $this->input->post('campus_id'),
 			'name' => $this->input->post('name'),
-			'code' => $this->input->post('code'),
-			'type' => $this->input->post('type'),
 			'status' => $this->input->post('status'),
 		);
 
-		$this->Scholarship->updateScholar($scholarId, $data);
+		$this->Course->updateCourse($courseId, $data);
 	
-		$this->session->set_flashdata('success', 'Scholar data updated successfully.');
+		$this->session->set_flashdata('success', 'Course data updated successfully.');
 	
 		redirect($_SERVER['HTTP_REFERER']);
 

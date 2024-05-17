@@ -9,7 +9,8 @@ class Scholarship extends CI_Model {
 	public function getScholarships()
 	{
 		$sql = "SELECT scholarship.id, scholarship.name, scholarship.code, scholarship.status, scholarship.type
-				FROM scholarship";
+				FROM scholarship 
+				ORDER BY scholarship.created_at DESC";
 		
 		$query = $this->db->query($sql);
 		return $query->result_array();

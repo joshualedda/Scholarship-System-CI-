@@ -33,7 +33,7 @@
 									<tr>
 
 										<th>Scholarship</th>
-										<th>Code</th>
+										<th>Abbrevation</th>
 										<th>Type</th>
 										<th>Status</th>
 										<th>Manage</th>

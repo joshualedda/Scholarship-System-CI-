@@ -26,14 +26,14 @@ class Campus extends CI_Controller
 	public function store()
 	{
 		$data = array(
+			'description' => $this->input->post('description'),
 			'name' => $this->input->post('name'),
-			'type' => $this->input->post('type'),
 		);
 
 		$this->Camp->insertCampus($data);
 
 		// Set flashdata message
-		$this->session->set_flashdata('success', 'Campus saved successfully.');
+		$this->session->set_flashdata('success', 'Campus Saved Successfully.');
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
@@ -52,7 +52,7 @@ class Campus extends CI_Controller
 
 	public function edit($campusId)
 	{
-		$data['campus'] = $this->Camp->getCampus($campusId);
+		$data['campus'] = $this->Camp->getSingleCampus($campusId);
 
 		$this->load->view('partials/header');
 		$this->load->view('partials/admin/navbar');
@@ -65,12 +65,13 @@ class Campus extends CI_Controller
 	{
 		$data = array(
 			'name' => $this->input->post('name'),
-			'type' => $this->input->post('type'),
+			'description' => $this->input->post('description'),
+			'status' => $this->input->post('status'),
 		);
 
 		$this->Camp->updateCampus($campusId, $data);
 	
-		$this->session->set_flashdata('success', 'Scholar data updated successfully.');
+		$this->session->set_flashdata('success', 'Campus Data Updated Successfully.');
 	
 		redirect($_SERVER['HTTP_REFERER']);
 

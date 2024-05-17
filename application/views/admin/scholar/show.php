@@ -37,6 +37,15 @@
 						<input disabled class="form-control" type="text" required name="name" value="<?=$scholar['name'] ?>" />
 					</div>
 				</div>
+
+				<div class="col-md-6">
+					<label class="form-label">Abbrevation<span class="text-red"></span><span
+							class="text-danger">*</span></label>
+					<div class="input-group">
+						<input disabled class="form-control" type="text" required name="code" value="<?=$scholar['code'] ?>" />
+					</div>
+				</div>
+			
 			
 				<div class="col-md-6">
 
@@ -49,7 +58,15 @@
 </div>
 
 
+<div class="col-md-6">
 
+<label class="form-label">Status<span class="text-danger">*</span></label>
+<select disabled class="form-select" name="status" required>
+	<option selected value="">Choose from below</option>
+	<option value="0" <?= ($scholar['status'] == 0) ? 'selected' : '' ?>>Active</option>
+	<option value="1" <?= ($scholar['status'] == 1) ? 'selected' : '' ?>>Inactive</option>
+</select>
+</div>
 			
 
 

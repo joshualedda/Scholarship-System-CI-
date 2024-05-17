@@ -37,3 +37,13 @@ $route['admin/campus/create'] = 'Campus/create';
 $route['admin/campus/view/(:any)'] = 'Campus/show/$1';
 //edit
 $route['admin/campus/edit/(:any)'] = 'Campus/edit/$1';
+
+
+//Courses
+$route['admin/courses'] = 'Courses';
+//create
+$route['admin/courses/create'] = 'Courses/create';
+//vierw
+$route['admin/courses/view/(:any)'] = 'Courses/show/$1';
+//edit
+$route['admin/courses/edit/(:any)'] = 'Courses/edit/$1';

@@ -12,7 +12,8 @@ class Student extends CI_Model {
 	public function getStudents()
 	{
 		$sql = "SELECT students.id AS studentId, students.first_name, students.last_name, students.gender, students.status, students.campus_id
-				FROM students";
+				FROM students
+				ORDER BY students.created_at DESC";
 		
 		$query = $this->db->query($sql);
 		return $query->result_array();

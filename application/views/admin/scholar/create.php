@@ -37,6 +37,14 @@
 						<input class="form-control" type="text" required name="name" />
 					</div>
 				</div>
+
+				<div class="col-md-6">
+					<label class="form-label">Abbrevation<span class="text-red"></span><span
+							class="text-danger">*</span></label>
+					<div class="input-group">
+						<input class="form-control" type="text" required name="code" />
+					</div>
+				</div>
 			
 				<div class="col-md-6">
 					<label class="form-label">Type<span class="text-danger">*</span></label>
