@@ -5,4 +5,9 @@ class Grant extends CI_Model {
 	{
 		$this->load->database();
 	}
+
+	public function insertGrantee($data)
+    {
+        return $this->db->insert('grantees', $data);
+    }
 }

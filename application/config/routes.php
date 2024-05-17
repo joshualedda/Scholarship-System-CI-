@@ -16,7 +16,8 @@ $route['admin/student/create'] = 'Students/create';
 $route['admin/student/view/(:any)'] = 'Students/show/$1';
 //edit
 $route['admin/student/edit/(:any)'] = 'Students/edit/$1';
-
+//Add Student Grantee
+$route['admin/student/grante/(:any)'] = 'Students/grantee/$1';
 
 
 //Scholarships Area
@@ -58,3 +59,7 @@ $route['admin/grantes/create'] = 'Grantes/create';
 $route['admin/grantes/view/(:any)'] = 'Grantes/show/$1';
 //edit
 $route['admin/grantes/edit/(:any)'] = 'Grantes/edit/$1';
+//route
+
+
+

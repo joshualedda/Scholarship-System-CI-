@@ -60,6 +60,7 @@
 				<td>
 				<a href="<?= site_url('admin/student/view/' . $student['studentId']) ?>" class="btn-primary btn btn-sm">View</a>
 				<a href="<?= site_url('admin/student/edit/' . $student['studentId']) ?>" class="btn-primary btn btn-sm">Edit</a>
+				<a href="<?= site_url('admin/student/grante/' . $student['studentId']) ?>" class="btn-primary btn btn-sm">Grantee</a>
 
 				</td>
     </tr>

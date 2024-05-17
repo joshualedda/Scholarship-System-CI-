@@ -41,5 +41,13 @@ class Scholarship extends CI_Model {
 		$this->db->update('scholarship', $data);
 	}
 	
+	public function getScholarType($type1)
+	{
+		$sql = "SELECT scholarship.id, scholarship.name
+				FROM scholarship
+				WHERE type = ?";
+		$query = $this->db->query($sql, array($type1));
+		return $query->result_array();    
+	}
 	
 }
