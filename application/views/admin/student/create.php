@@ -34,10 +34,11 @@
 
 				<div class="col-md-6">
 					<label class="form-label">Campus<span class="text-danger">*</span></label>
-					<select class="form-select" name="campus_id" required>
+					<select class="form-select" name="campus_id" required id="campus_id">
 						<option selected value="">Choose from below</option>
-						<option value="0">Male</option>
-						<option value="1">Female</option>
+						<?php foreach ($campus as $camp): ?>
+									<option value="<?= $camp['id']?>"><?= $camp['name']?></option>
+						<?php endforeach; ?>
 					</select>
 				</div>
 				<hr>
@@ -81,8 +82,8 @@
 					<label class="form-label">Civil Status<span class="text-danger">*</span></label>
 					<select class="form-select" name="civil_status" required>
 						<option selected value="">Choose from below</option>
-						<option value="0">Male</option>
-						<option value="1">Female</option>
+						<option value="0">Single</option>
+						<option value="1">Married</option>
 					</select>
 				</div>
 
@@ -140,23 +141,24 @@
 					<label class="form-label">Year Level<span class="text-danger">*</span></label>
 					<select class="form-select" name="year_level" required>
 						<option selected value="">Choose from below</option>
-						<option value="0">Active</option>
-						<option value="1">Inactive</option>
-						<option value="2">Graduate</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
 					</select>
 				</div>
+
+
 				<div class="col-md-6">
 					<label class="form-label">Course<span class="text-danger">*</span></label>
-					<select class="form-select" name="course_id" required>
+					<select id="course_id" class="form-select" name="course_id" required>
 						<option selected value="">Choose from below</option>
-						<option value="0">Active</option>
-						<option value="1">Inactive</option>
-						<option value="2">Graduate</option>
 					</select>
 				</div>
 
-				<h5 class="card-title mx-2">Parent Information</h5>
 
+
+				<h5 class="card-title mx-2">Parent Information</h5>
 				<div class="col-md-6">
 					<label class="form-label">Father Name<span class="text-red"></span><span
 							class="text-danger">*</span></label>
@@ -175,9 +177,7 @@
 
 
 
-
 				<div class="col-12 d-flex justify-content-end align-items-center">
-
 					<button class="btn btn-success mt-2 ml-2" type="submit" name="submit">Add Student</button>
 				</div>
 
@@ -213,5 +213,20 @@
 			}
 		});
 	});
+	// courses
+	$('#campus_id').change(function(){
+		var campus_id = $(this).val();
+		$.ajax({
+			url: "<?php echo base_url('students/getCourses'); ?>", // Fixed PHP echo
+			type: "post",
+			data: {campus_id: campus_id},
+			success: function(response){
+				$('#course_id').html(response);
+			}
+		});
+	});
+
+
+
 });
 </script>

@@ -47,3 +47,14 @@ $route['admin/courses/create'] = 'Courses/create';
 $route['admin/courses/view/(:any)'] = 'Courses/show/$1';
 //edit
 $route['admin/courses/edit/(:any)'] = 'Courses/edit/$1';
+
+
+// Grantess
+
+$route['admin/grantes'] = 'Grantes';
+//create
+$route['admin/grantes/create'] = 'Grantes/create';
+//vierw
+$route['admin/grantes/view/(:any)'] = 'Grantes/show/$1';
+//edit
+$route['admin/grantes/edit/(:any)'] = 'Grantes/edit/$1';

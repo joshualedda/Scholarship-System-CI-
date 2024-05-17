@@ -18,6 +18,19 @@ class Course extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function getActiveCourses()
+	{
+		$sql = "SELECT courses.id AS courseId, courses.name, courses.status, courses.campus_id
+				FROM courses 
+				WHERE courses.status = ?
+				ORDER BY courses.created_at DESC";
+		
+		$query = $this->db->query($sql, array(0));
+		return $query->result_array();
+	}
+
+
+
 	public function insertCourse($data) {
         $this->db->insert('courses', $data);
     }
@@ -42,5 +55,14 @@ class Course extends CI_Model {
 		$this->db->update('courses', $data);
 	}
 	
+	// Course filtering
+	public function getCourseByCampus($campus_id)
+	{
+		$sql = "SELECT courses.id, courses.name
+				FROM courses
+				WHERE campus_id = ?";
+		$query = $this->db->query($sql, array($campus_id));
+		return $query->result_array();    
+	}
 	
 }

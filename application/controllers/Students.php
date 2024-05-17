@@ -19,6 +19,9 @@ class Students extends CI_Controller
 		$data['student'] = $this->Student->getStudent($studentId);
 		$data = $this->address($data);
 
+		// others
+		$data['campus'] = $this->Camp->getActiveCampus();
+
 
 		$this->load->view('partials/header');
 		$this->load->view('partials/admin/navbar');
@@ -32,6 +35,10 @@ class Students extends CI_Controller
 		$data = array(); 
 		$data = $this->address($data); 
 	
+		// courses
+		$data['campus'] = $this->Camp->getActiveCampus();
+		$data['courses'] = $this->Course->getActiveCourses();
+
 		$this->load->view('partials/header');
 		$this->load->view('partials/admin/navbar');
 		$this->load->view('partials/admin/sidebar');
@@ -41,10 +48,13 @@ class Students extends CI_Controller
 	
 	public function show($studentId)
 	{
-
 		$data['student'] = $this->Student->getStudent($studentId);
 		$data['provinces'] = $this->Address->getProvince(); 
 
+
+		$data['campus'] = $this->Camp->getActiveCampus();
+
+		
 		$this->load->view('partials/header');
 		$this->load->view('partials/admin/navbar');
 		$this->load->view('partials/admin/sidebar');
@@ -133,6 +143,17 @@ class Students extends CI_Controller
 		$options = "<option selected value=''>Choose from below</option>";
 		foreach ($barangays as $barangay) {
 			$options .= "<option value='".$barangay['brgyCode']."'>".$barangay['brgyDesc']."</option>";
+		}
+		echo $options;
+	}
+
+	public function getCourses()
+	{
+		$campus_id = $this->input->post('campus_id');
+		$courses = $this->Course->getCourseByCampus($campus_id);
+		$options = "<option selected value=''>Choose from below</option>";
+		foreach ($courses as $course) {
+			$options .= "<option value='".$course['id']."'>".$course['name']."</option>";
 		}
 		echo $options;
 	}

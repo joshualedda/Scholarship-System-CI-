@@ -16,6 +16,15 @@ class Camp extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function getActiveCampus()
+	{
+		$sql = "SELECT campus.id, campus.name
+				FROM campus
+				WHERE campus.status = ?
+				ORDER BY campus.created_at DESC";
+		$query = $this->db->query($sql, array(0));
+		return $query->result_array();
+	}
 	
 	public function insertCampus($data) {
         $this->db->insert('campus', $data);

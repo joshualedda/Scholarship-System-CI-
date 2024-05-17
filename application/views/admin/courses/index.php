@@ -12,7 +12,7 @@
 
 
 	<div class="d-flex justify-content-end my-2">
-		<a href="<?= base_url('admin/campus/create') ?>" class="btn btn-success mx-2">Add</a>
+		<a href="<?= base_url('admin/courses/create') ?>" class="btn btn-success mx-2">Add</a>
 
 	</div>
 
@@ -45,7 +45,7 @@
 								<tbody>
 									<?php foreach ($courses as $course): ?>
 										<tr>
-											
+
 											<td><?= $course['name'] ?></td>
 											<td><?= $course['CampusName'] ?></td>
 											<td><?= ($course['status'] == 0) ? 'Active' : 'Inactive' ?></td>
@@ -55,7 +55,6 @@
 													class="btn-primary btn btn-sm">View</a>
 												<a href="<?= site_url('admin/courses/edit/' . $course['courseId']) ?>"
 													class="btn-primary btn btn-sm">Edit</a>
-
 											</td>
 										</tr>
 									<?php endforeach; ?>

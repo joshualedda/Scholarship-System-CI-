@@ -1,7 +1,7 @@
 <main id="main" class="main">
 	<div>
 		<div class="pagetitle">
-			<h1>Update Student</h1>
+			<h1>Edit Student</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
@@ -33,14 +33,19 @@
 					</div>
 				</div>
 
+
 				<div class="col-md-6">
 					<label class="form-label">Campus<span class="text-danger">*</span></label>
-					<select class="form-select" name="campus_id">
-						<option selected value="">Choose from below</option>
-						<option value="0">Male</option>
-						<option value="1">Female</option>
+					<select class="form-select" name="campus_id" required id="campus_id">
+						<option value="" <?= ($student['campus_id'] == '') ? 'selected' : '' ?>>Choose from below</option>
+						<?php foreach ($campus as $camp): ?>
+							<option value="<?= $camp['id'] ?>" <?= ($camp['id'] == $student['campus_id']) ? 'selected' : '' ?>>
+								<?= $camp['name'] ?>
+							</option>
+						<?php endforeach; ?>
 					</select>
 				</div>
+
 
 				<hr>
 				<div class="col-md-4">
@@ -113,7 +118,6 @@
 				</div>
 
 				<div class="col-md-4">
-
 					<label class="form-label">Province<span class="text-danger">*</span></label>
 					<select class="form-select" name="province_id" required id="province_id">
 						<option value="">Choose from below</option>
@@ -143,15 +147,6 @@
 					</select>
 				</div>
 
-
-
-
-
-
-
-
-
-
 				<h5 class="card-title mx-2">School Information</h5>
 				<div class="col-md-6">
 					<label class="form-label">Year Level<span class="text-danger">*</span></label>
@@ -169,11 +164,10 @@
 
 				<div class="col-md-6">
 					<label class="form-label">Course<span class="text-danger">*</span></label>
-					<select class="form-select" name="course_id">
-						<option selected value="">Choose from below</option>
-						<option value="0">Active</option>
-						<option value="1">Inactive</option>
-						<option value="2">Graduate</option>
+					<select class="form-select" name="course_id" id="course_id">
+						<option value="">Choose from below</option>
+						<option selected value="<?= $student['courseId'] ?>"><?= $student['courseName'] ?></option>
+
 					</select>
 				</div>
 
@@ -215,29 +209,64 @@
 	</div>
 </main>
 <script>
-	$(document).ready(function(){
-	$('#province_id').change(function(){
-		var province_id = $(this).val();
-		$.ajax({
-			url: "<?php echo base_url('students/getMunicipalities'); ?>", // Fixed PHP echo
-			type: "post",
-			data: {province_id: province_id},
-			success: function(response){
-				$('#municipal_id').html(response);
-			}
+	$(document).ready(function () {
+		$('#province_id').change(function () {
+			var province_id = $(this).val();
+			$.ajax({
+				url: "<?php echo base_url('students/getMunicipalities'); ?>", // Fixed PHP echo
+				type: "post",
+				data: { province_id: province_id },
+				success: function (response) {
+					$('#municipal_id').html(response);
+				}
+			});
 		});
-	});
 
-	$('#municipal_id').change(function(){ // Event listener for Municipality dropdown
-		var municipal_id = $(this).val();
-		$.ajax({
-			url: "<?php echo base_url('students/getBarangays'); ?>", // URL to fetch Barangays
-			type: "post",
-			data: {municipal_id: municipal_id},
-			success: function(response){
-				$('#barangay_id').html(response);
+		$('#municipal_id').change(function () { // Event listener for Municipality dropdown
+			var municipal_id = $(this).val();
+			$.ajax({
+				url: "<?php echo base_url('students/getBarangays'); ?>", // URL to fetch Barangays
+				type: "post",
+				data: { municipal_id: municipal_id },
+				success: function (response) {
+					$('#barangay_id').html(response);
+				}
+			});
+		});
+
+		// campuis
+
+	});
+</script>
+<script>
+	$(document).ready(function () {
+		function loadCourses(campus_id, selected_course_id = null) {
+			$.ajax({
+				url: "<?php echo base_url('students/getCourses'); ?>",
+				type: "post",
+				data: { campus_id: campus_id },
+				success: function (response) {
+					$('#course_id').html(response);
+					if (selected_course_id) {
+						$('#course_id').val(selected_course_id);
+					}
+				}
+			});
+		}
+
+		$('#campus_id').change(function () {
+			var campus_id = $(this).val();
+			if (campus_id) {
+				loadCourses(campus_id);
+			} else {
+				$('#course_id').html('<option value="">Choose from below</option>');
 			}
 		});
+
+		var selectedCampusId = $('#campus_id').val();
+		var selectedCourseId = "<?= $student['course_id'] ?>";
+		if (selectedCampusId) {
+			loadCourses(selectedCampusId, selectedCourseId);
+		}
 	});
-});
 </script>

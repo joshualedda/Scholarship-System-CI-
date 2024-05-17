@@ -1,11 +1,11 @@
 <main id="main" class="main">
 
   <div class="pagetitle">
-    <h1>Students</h1>
+    <h1>Grantees</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-        <li class="breadcrumb-item">Student</li>
+        <li class="breadcrumb-item">Grantees</li>
       </ol>
     </nav>
   </div>
@@ -25,7 +25,7 @@
           <div class="card-body">
 
           
-            <h5 class="card-title">Students Data</h5>
+            <h5 class="card-title">Grantees Data</h5>
 
             <div class="table-responsive">
 
@@ -43,27 +43,17 @@
                 </tr>
               </thead>
 						
-
-
-
 			<tbody>
-    <?php foreach($students as $student): ?>
-    <tr>
-        <td><?= $student['studentId'] ?></td>
-        <td><?= $student['first_name'] ?></td>
-        <td><?= $student['last_name'] ?></td>
-        <td><?= $student['courseName'] ?></td>
-				
-        <td><?= $student['campusName'] ?></td>
-				<td><?= ($student['status'] == 0) ? 'Active' : 'Inactive' ?></td>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
 
-				<td>
-				<a href="<?= site_url('admin/student/view/' . $student['studentId']) ?>" class="btn-primary btn btn-sm">View</a>
-				<a href="<?= site_url('admin/student/edit/' . $student['studentId']) ?>" class="btn-primary btn btn-sm">Edit</a>
-
-				</td>
-    </tr>
-    <?php endforeach; ?>
 </tbody>
 
 

@@ -16,10 +16,12 @@ class Courses extends CI_Controller
 
 	public function create()
 	{
+		$data['campus'] = $this->Camp->getActiveCampus();
+
 		$this->load->view('partials/header');
 		$this->load->view('partials/admin/navbar');
 		$this->load->view('partials/admin/sidebar');
-		$this->load->view('admin/courses/create');
+		$this->load->view('admin/courses/create', $data);
 		$this->load->view('partials/footer');
 	}
 
@@ -28,12 +30,12 @@ class Courses extends CI_Controller
 		$data = array(
 			'campus_id' => $this->input->post('campus_id'),
 			'name' => $this->input->post('name'),
+			'abbrevation' => $this->input->post('abbrevation'),
 			'status' => $this->input->post('status'),
 		);
 
 		$this->Course->insertCourse($data);
 
-		// Set flashdata message
 		$this->session->set_flashdata('success', 'Course Saved Successfully.');
 
 		redirect($_SERVER['HTTP_REFERER']);
@@ -41,7 +43,8 @@ class Courses extends CI_Controller
 
 	public function show($courseId)
 	{
-		$data['courses'] = $this->Course->getCourse($courseId);
+		$data['course'] = $this->Course->getCourse($courseId);
+		$data['campus'] = $this->Camp->getActiveCampus();
 
 		$this->load->view('partials/header');
 		$this->load->view('partials/admin/navbar');
@@ -49,9 +52,11 @@ class Courses extends CI_Controller
 		$this->load->view('admin/courses/show', $data);
 		$this->load->view('partials/footer');
 	}
+
 	public function edit($courseId)
 	{
-		$data['courses'] = $this->Course->getCourse($courseId);
+		$data['course'] = $this->Course->getCourse($courseId);
+		$data['campus'] = $this->Camp->getActiveCampus();
 
 		$this->load->view('partials/header');
 		$this->load->view('partials/admin/navbar');
@@ -64,6 +69,7 @@ class Courses extends CI_Controller
 	{
 		$data = array(
 			'campus_id' => $this->input->post('campus_id'),
+			'abbrevation' => $this->input->post('abbrevation'),
 			'name' => $this->input->post('name'),
 			'status' => $this->input->post('status'),
 		);
