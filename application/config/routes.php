@@ -63,3 +63,9 @@ $route['admin/grantes/edit/(:any)'] = 'Grantes/edit/$1';
 
 
 
+// Back Up Area
+$route['admin/backup'] = 'Backup';
+
+// Login
+$route['login'] = 'Auth/login';
+

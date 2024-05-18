@@ -11,13 +11,13 @@
 		</div>
 	</div>
 	<div class="d-flex justify-content-end my-2">
-		<a href="<?= base_url('admin/courses') ?>" class="btn btn-success">Back</a>
+		<a href="<?= base_url('admin/students') ?>" class="btn btn-success">Back</a>
 	</div>
 
 	<div class="alert alert-success" id="message" style="display: none;">
 	</div>
 
-	<?php if ($this->session->flashdata('success')): ?>
+	<?php if ($this->session->flashdata('success')) : ?>
 		<div class="alert alert-success"><?= $this->session->flashdata('success') ?></div>
 	<?php endif; ?>
 
@@ -31,20 +31,16 @@
 			<div class="row g-3">
 
 				<div class="col-md-6">
-					<label class="form-label">Student Name<span class="text-red"></span><span
-							class="text-danger">*</span></label>
-					<input disabled class="form-control" type="text" required name="name"
-						value="<?= $student['first_name'] . ' ' . $student['middle_name'] . ' ' . $student['last_name'] ?>" />
+					<label class="form-label">Student Name<span class="text-red"></span><span class="text-danger">*</span></label>
+					<input disabled class="form-control" type="text" required name="name" value="<?= $student['first_name'] . ' ' . $student['middle_name'] . ' ' . $student['last_name'] ?>" />
 
 				</div>
 
 
 				<div class="col-md-6">
-					<label class="form-label">Course<span class="text-red"></span><span
-							class="text-danger">*</span></label>
+					<label class="form-label">Course<span class="text-red"></span><span class="text-danger">*</span></label>
 
-					<input disabled class="form-control" type="text" required name="abbrevation"
-						value="<?= $student['courseName'] ?>" />
+					<input disabled class="form-control" type="text" required name="abbrevation" value="<?= $student['courseName'] ?>" />
 
 				</div>
 
@@ -65,7 +61,7 @@
 					<label class="form-label">Campus<span class="text-danger">*</span></label>
 					<select disabled class="form-select" name="campus_id" required id="campus_id">
 						<option value="" <?= ($student['campus_id'] == '') ? 'selected' : '' ?>>Choose from below</option>
-						<?php foreach ($campus as $camp): ?>
+						<?php foreach ($campus as $camp) : ?>
 							<option value="<?= $camp['id'] ?>" <?= ($camp['id'] == $student['campus_id']) ? 'selected' : '' ?>>
 								<?= $camp['name'] ?>
 							</option>
@@ -78,9 +74,9 @@
 				<h5 class="card-title mx-2">Add Scholarship</h5>
 
 				<form class="g-3 row" action="<?= base_url('students/addGrantee/' . $student['id']) ?>" method="POST">
-				<h6>First Scholarship</h6>
-					
-				<div class="col-md-6">
+					<h6>First Scholarship</h6>
+
+					<div class="col-md-6">
 						<label class="form-label">Scholarship Type<span class="text-danger">*</span></label>
 						<select class="form-select" name="type1" id="type1" required>
 							<option value="">Choose from below</option>
@@ -94,14 +90,32 @@
 							<option value="">Choose from below</option>
 						</select>
 					</div>
+
+
 					<div class="col-md-6">
 						<label class="form-label">Semester<span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="semester1" required />
+						<select class="form-select" name="semester1" required>
+							<option value="">Choose from below</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select>
+
 					</div>
+
+
 					<div class="col-md-6">
 						<label class="form-label">School Year<span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="school_year1" required />
+						<select class="form-select" name="school_year1" required>
+							<option value="">Choose from below</option>
+							<option value="2023-2024">2023-2024</option>
+							<option value="2024-2025">2024-2025</option>
+							<option value="2025-2026">2025-2026</option>
+						</select>
 					</div>
+
+
 					<hr>
 					<h6>Second Scholarship</h6>
 					<div class="col-md-6">
@@ -112,19 +126,34 @@
 							<option value="1">Public</option>
 						</select>
 					</div>
+
 					<div class="col-md-6">
 						<label class="form-label">Scholarship<span class="text-danger">*</span></label>
 						<select class="form-select" name="scholarship_id2" id="scholarship_id2">
 							<option value="">Choose from below</option>
 						</select>
 					</div>
+
 					<div class="col-md-6">
 						<label class="form-label">Semester<span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="semester2" />
+
+						<select class="form-select" name="semester2" required>
+							<option value="">Choose from below</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select>
+
 					</div>
 					<div class="col-md-6">
 						<label class="form-label">School Year<span class="text-danger">*</span></label>
-						<input class="form-control" type="text" name="school_year2" />
+						<select class="form-select" name="school_year2" required>
+							<option value="">Choose from below</option>
+							<option value="2023-2024">2023-2024</option>
+							<option value="2024-2025">2024-2025</option>
+							<option value="2025-2026">2025-2026</option>
+						</select>
 					</div>
 					<div class="col-12 d-flex justify-content-end align-items-center">
 						<button class="btn btn-success mt-2 ml-2" type="submit" name="submit">Add Scholarship</button>
@@ -138,28 +167,32 @@
 </main>
 
 <script>
-	$(document).ready(function () {
+	$(document).ready(function() {
 		// Populate scholarship options for the first scholarship type
-		$('#type1').change(function () {
+		$('#type1').change(function() {
 			var type1 = $(this).val();
 			$.ajax({
 				url: "<?php echo base_url('students/getScholars'); ?>",
 				type: "post",
-				data: { type: type1 },
-				success: function (response) {
+				data: {
+					type: type1
+				},
+				success: function(response) {
 					$('#scholarship_id1').html(response);
 				}
 			});
 		});
 
 		// Populate scholarship options for the second scholarship type
-		$('#type2').change(function () {
+		$('#type2').change(function() {
 			var type2 = $(this).val();
 			$.ajax({
 				url: "<?php echo base_url('students/getScholarsTwo'); ?>",
 				type: "post",
-				data: { type: type2 },
-				success: function (response) {
+				data: {
+					type: type2
+				},
+				success: function(response) {
 					$('#scholarship_id2').html(response);
 				}
 			});
