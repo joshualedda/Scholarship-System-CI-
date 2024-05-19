@@ -26,7 +26,8 @@
 		<div class="card-body">
 
 
-		<form class="row g-3" id="addStudentForm" action="<?= base_url('campus/update/' . $campus['id']) ?>" method="POST">
+		<form class="row g-3" id="addStudentForm" 
+		action="<?= base_url('campus/update/' . $campus['id']) ?>" method="POST">
 
 				<h5 class="card-title mx-2">Campus Data</h5>
 

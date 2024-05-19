@@ -11,8 +11,33 @@ class Auth extends CI_Controller
 		$this->load->view('partials/footer');
 	}
 
-	public function loginProcess()
-	{
-		
-	}
+	public function loginProcess() {
+        // Set validation rules
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+         $this->login();
+        } else {
+            // Validation passed, process the login
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+
+            // Call the model method to check the credentials
+            $user = $this->User->check_credentials($username, $password);
+
+            if ($user) {
+                // Credentials are correct, set session data
+                $this->session->set_userdata('user_id', $user['id']);
+                $this->session->set_userdata('username', $user['username']);
+                // Redirect to a protected area
+                redirect('dashboard');
+            } else {
+                // Credentials are incorrect, set an error message
+                $this->session->set_flashdata('error', 'Invalid Username or Password');
+				redirect($_SERVER['HTTP_REFERER']);
+
+            }
+        }
+    }
 }

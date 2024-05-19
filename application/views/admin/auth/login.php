@@ -25,6 +25,10 @@
                   <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                   <p class="text-center small">Enter your email & password to login</p>
                 </div>
+
+								<?php if ($this->session->flashdata('error')) : ?>
+								<div class="alert alert-danger"><?= $this->session->flashdata('error') ?></div>
+							<?php endif; ?>
                 <?php
 
                 if (isset($_SESSION['success_message'])) {
@@ -35,26 +39,29 @@
 
                 ?>
 
-                <form class="row g-3 needs-validation" action="<?=base_url('') ?>" method="POST">
+                <form class="g-3 row needs-validation" action="<?=base_url('auth/loginProcess') ?>" method="POST">
 
 
                   <div class="col-12">
                     <label for="yourUsername" class="form-label">Username</label>
                     <div class="input-group has-validation">
 
-                      <input type="text" name="username" required
+                      <input type="text" name="username"
                         class="form-control" id="yourUsername">
-                
-
-                    </div>
+												
+												
+												
+											</div>
+											<span class="text-sm text-danger"><?= form_error('username') ?></span>
 
                   </div>
 
                   <div class="col-12">
                     <label for="yourPassword" class="form-label">Password</label>
-                    <input required type="password" name="password" class="form-control " id="yourPassword">
+                    <input type="password" name="password" class="form-control " id="yourPassword">
 
-                    <div class="invalid-feedback">Please enter your password!</div>
+										<span class="text-sm text-danger"><?= form_error('password') ?></span>
+
                   </div>
 
 

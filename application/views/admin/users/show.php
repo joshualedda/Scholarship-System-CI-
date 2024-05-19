@@ -33,42 +33,47 @@
 
 				<div class="col-md-6">
 					<label class="form-label">Name<span class="text-danger">*</span></label>
-					<input class="form-control" type="text" name="name" value="<?= set_value('name') ?>" />
+					<input class="form-control" type="text" name="name" value="<?= $user['name'] ?>" />
 					<span class="text-sm text-danger"><?= form_error('name') ?></span>
 				</div>
 
 				<div class="col-md-6">
 					<label class="form-label">Username<span class="text-danger">*</span></label>
-					<input class="form-control" type="text" name="username" value="<?= set_value('username') ?>" />
+					<input class="form-control" type="text" name="username" value="<?= $user['username'] ?>" />
 					<span class="text-sm text-danger"><?= form_error('username') ?></span>
 				</div>
 
 				<div class="col-md-6">
 					<label class="form-label">Email Address<span class="text-danger">*</span></label>
-					<input class="form-control" type="email" name="email" value="<?= set_value('email') ?>" />
+					<input class="form-control" type="email" name="email" value="<?= $user['email'] ?>" />
 					<span class="text-sm text-danger"><?= form_error('email') ?></span>
 				</div>
 
 				<div class="col-md-6">
 					<label class="form-label">User Type<span class="text-danger">*</span></label>
+
 					<select class="form-select" name="user_type" id="user_type">
-						<option selected value="">Choose from below</option>
-						<option value="0" <?= set_select('user_type', '0') ?>>Staff</option>
-						<option value="1" <?= set_select('user_type', '1') ?>>Admin</option>
-						<option value="2" <?= set_select('user_type', '2') ?>>Campus In Charge</option>
+					<option value="" <?= ($user['type_id'] == '') ? 'selected' : '' ?>>Choose from below</option>
+						<?php foreach ($userTypes as $type): ?>
+							<option value="<?= $type['id'] ?>" <?= ($type['id'] == $user['type_id']) ? 'selected' : '' ?>>
+								<?= $type['name'] ?>
+							</option>
+						<?php endforeach; ?>
 					</select>
 					<span class="text-sm text-danger"><?= form_error('user_type') ?></span>
 				</div>
 
+				
 				<div class="col-md-6">
 					<label class="form-label">Campus<span class="text-danger">*</span></label>
-					<select disabled class="form-select" name="campus_id" id="campus_id">
-						<option selected value="">Choose from below</option>
-						<?php foreach ($campus as $camp) : ?>
-							<option value="<?= $camp['id'] ?>" <?= set_select('campus_id', $camp['id']) ?>><?= $camp['name'] ?></option>
+					<select  class="form-select" name="campus_id" required id="campus_id">
+						<option value="" <?= ($user['campus_id'] == '') ? 'selected' : '' ?>>Choose from below</option>
+						<?php foreach ($campus as $camp): ?>
+							<option value="<?= $camp['id'] ?>" <?= ($camp['id'] == $user['campus_id']) ? 'selected' : '' ?>>
+								<?= $camp['name'] ?>
+							</option>
 						<?php endforeach; ?>
 					</select>
-					<span class="text-sm text-danger"><?= form_error('campus_id') ?></span>
 				</div>
 
 				<div class="col-md-6">
