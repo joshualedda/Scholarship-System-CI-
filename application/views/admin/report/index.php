@@ -33,7 +33,7 @@
 				<div class="col-md-4">
 				
 				<label class="form-label">Province<span class="text-danger">*</span></label>
-				<select class="form-select" name="province_id" required id="province_id">
+				<select class="form-select" name="province_id"  id="province_id">
 					<option selected value="">Choose from below</option>
 					<?php foreach ($provinces as $province): ?>
 						<option value="<?= $province['provCode']; ?>"><?= $province['provDesc']; ?></option>
@@ -43,7 +43,7 @@
 
 				<div class="col-md-4">
 					<label class="form-label">Municipality<span class="text-danger">*</span></label>
-					<select class="form-select" name="municipal_id" required id="municipal_id">
+					<select class="form-select" name="municipal_id"  id="municipal_id">
 						<option selected value="">Choose from below</option>
 						
 					</select>
@@ -51,7 +51,7 @@
 
 				<div class="col-md-4">
 					<label class="form-label">Barangay<span class="text-danger">*</span></label>
-					<select class="form-select" name="barangay_id" required id="barangay_id">
+					<select class="form-select" name="barangay_id"  id="barangay_id">
 						<option selected value="">Choose from below</option>
 					
 					</select>
@@ -60,7 +60,7 @@
 <!-- Campus -->
 <div class="col-md-6">
 					<label class="form-label">Campus<span class="text-danger">*</span></label>
-					<select class="form-select" name="campus_id" required id="campus_id">
+					<select class="form-select" name="campus_id"  id="campus_id">
 						<option selected value="">Choose from below</option>
 						<?php foreach ($campus as $camp): ?>
 									<option value="<?= $camp['id']?>"><?= $camp['name']?></option>
@@ -71,7 +71,7 @@
 
 				<div class="col-md-6">
 					<label class="form-label">Course<span class="text-danger">*</span></label>
-					<select id="course_id" class="form-select" name="course_id" required>
+					<select id="course_id" class="form-select" name="course_id" >
 						<option selected value="">Choose from below</option>
 					</select>
 				</div>
@@ -80,7 +80,7 @@
 						<div class="col-md-6">
 						<label class="form-label">Semester<span class="text-danger">*</span></label>
 
-						<select class="form-select" name="semester" required>
+						<select class="form-select" name="semester" >
 							<option value="">Choose from below</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -91,7 +91,7 @@
 					</div>
 					<div class="col-md-6">
 						<label class="form-label">School Year<span class="text-danger">*</span></label>
-						<select class="form-select" name="school_year" required>
+						<select class="form-select" name="school_year" >
 							<option value="">Choose from below</option>
 							<option value="2023-2024">2023-2024</option>
 							<option value="2024-2025">2024-2025</option>

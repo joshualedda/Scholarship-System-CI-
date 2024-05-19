@@ -28,8 +28,6 @@ class Reports extends CI_Controller
 	
 	public function generateReport()
 {
-    // Load PhpSpreadsheet library
-    require_once FCPATH . 'vendor/autoload.php';
 
     // Retrieve form data
     $province_id = $this->input->post('province_id');
@@ -60,6 +58,7 @@ class Reports extends CI_Controller
     foreach ($students as $student) {
         $sheet->setCellValue('A' . $row, $student['student_id']);
         $sheet->setCellValue('B' . $row, $student['first_name']);
+        $sheet->setCellValue('B' . $row, $student['middle_name']);
         $sheet->setCellValue('C' . $row, $student['last_name']);
         // Populate more columns with student data
         $row++;
