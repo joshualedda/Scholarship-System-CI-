@@ -4,7 +4,7 @@
 
 <li class="nav-item">
     <a class="nav-link<?php echo (current_url() == base_url('admin/dashboard')) ? '' : ' collapsed'; ?>" href="<?=base_url('admin/dashboard') ?>">
-        <i class="bi bi-grid"></i>
+	<i class="bi bi-grid-fill"></i></i>
         <span>Dashboard</span>
     </a>
 </li>
@@ -79,7 +79,7 @@
 
 <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#users-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-gear-fill"></i><span>User Settings</span><i class="bi bi-chevron-down ms-auto"></i>
+	<i class="bi bi-people-fill"></i>User Settings</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="users-nav" class="nav-content collapse <?= ($this->uri->segment(2) == 'users') ? 'show' : '' ?>" data-bs-parent="#sidebar-nav">
         <li>
@@ -93,15 +93,12 @@
 </li>
 
 
-
-
-
-  <li class="nav-item">
-	<a class="nav-link collapsed" href="pages-blank.html">
-	<i class="bi bi-box-arrow-in-left"></i>
-	  <span>Log Out</span>
-	</a>
-  </li>
+<li class="nav-item">
+    <a class="nav-link collapsed" href="<?= base_url('auth/logout') ?>">
+        <i class="bi bi-box-arrow-in-left"></i>
+        <span>Log Out</span>
+    </a>
+</li>
 
 </ul>
 

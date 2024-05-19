@@ -56,10 +56,11 @@ $route['admin/grantes'] = 'Grantes';
 //create
 $route['admin/grantes/create'] = 'Grantes/create';
 //vierw
-$route['admin/grantes/view/(:any)'] = 'Grantes/show/$1';
+$route['admin/grante/view/(:any)'] = 'Grantes/show/$1';
 //edit
-$route['admin/grantes/edit/(:any)'] = 'Grantes/edit/$1';
+$route['admin/grante/edit/(:any)'] = 'Grantes/edit/$1';
 //route
+
 
 
 

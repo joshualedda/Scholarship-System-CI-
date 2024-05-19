@@ -6,7 +6,8 @@ class Grantes extends CI_Controller
 
 	public function index()
 	{
-		$data['grantes'] = $this->Course->getCourses();
+		$data['grantees'] = $this->Grant->getGrantees();
+
 		$this->load->view('partials/header');
 		$this->load->view('partials/admin/navbar');
 		$this->load->view('partials/admin/sidebar');
@@ -39,6 +40,11 @@ class Grantes extends CI_Controller
 		$this->session->set_flashdata('success', 'Course Saved Successfully.');
 
 		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	public function show($granteeId)
+	{
+		var_dump($granteeId);
 	}
 
 

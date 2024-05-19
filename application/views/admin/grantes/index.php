@@ -1,3 +1,15 @@
+<?php
+function limitWords($string, $word_limit) {
+    $words = explode(" ", $string);
+    if (count($words) > $word_limit) {
+        return implode(" ", array_slice($words, 0, $word_limit)) . '...';
+    } else {
+        return $string;
+    }
+}
+
+?>
+
 <main id="main" class="main">
 
   <div class="pagetitle">
@@ -12,7 +24,6 @@
 
 
   <div class="d-flex justify-content-end my-2">
-    <a href="importStudent.php" class="btn btn-success">Import</a>
     <a href="<?=base_url('admin/student/create') ?>" class="btn btn-success mx-2">Add</a>
 
   </div>
@@ -34,25 +45,32 @@
                 <tr>
        
                   <th>Student ID</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Course</th>
+                  <th>Name</th>
                   <th>Campus</th>
+                  <th>Scholarship</th>
                   <th>Status</th>
                   <th>Manage</th>
                 </tr>
               </thead>
 						
 			<tbody>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
+			<?php foreach($grantees as $grantee): ?>
+    <tr>
+        <td><?= $grantee['studentRefference'] ?></td>
+        <td><?= $grantee['fullName'] ?></td>
+        <td><?= $grantee['campusName'] ?></td>
+				<td><?= limitWords($grantee['scholarName'], 4) ?></td>
+
+			      
+				<td><?= ($grantee['studentStatus'] == 0) ? 'Active' : 'Inactive' ?></td>
+
+				<td>
+				<a href="<?= site_url('admin/grante/view/' . $grantee['granteeId']) ?>" class="btn-primary btn btn-sm">View</a>
+				<a href="<?= site_url('admin/grante/edit/' . $grantee['granteeId']) ?>" class="btn-primary btn btn-sm">Edit</a>
+
+				</td>
+    </tr>
+    <?php endforeach; ?>
 
 </tbody>
 
