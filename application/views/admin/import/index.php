@@ -14,17 +14,28 @@
     </div>
     <div class="row">
 
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Import Guide</h5>
+		
+		
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Import Guide</h5>
+
+					<?php if ($this->session->flashdata('fail')): ?>
+				<div class="alert alert-danger"><?= $this->session->flashdata('fail') ?></div>
+			<?php endif; ?>
+
+
+				<?php if ($this->session->flashdata('success')): ?>
+				<div class="alert alert-success"><?= $this->session->flashdata('success') ?></div>
+			<?php endif; ?>
 
                     <form action="<?=base_url('Imports/ImportStudent') ?>" method="POST" class="blogdesire-form" enctype="multipart/form-data">
 
                         <div class="col-md-12">
                             <label class="form-label">CSV File<span class="text-red"></span><span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <input class="form-control" type="file"  name="data_upload" id="data_upload" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                                <input required class="form-control" type="file"  name="data_upload" id="data_upload" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
                             </div>
                         </div>
                         <p>

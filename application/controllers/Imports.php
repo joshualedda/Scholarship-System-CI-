@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 require_once FCPATH . 'vendor/autoload.php';
 
 
@@ -7,68 +7,87 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Reader\Csv;
 
-class Imports extends CI_Controller {
+class Imports extends CI_Controller
+{
 
-    public function index()
-    {
-        $this->load->view('partials/header');
-        $this->load->view('partials/admin/navbar');
-        $this->load->view('partials/admin/sidebar');
-        $this->load->view('admin/import/index');
-        $this->load->view('partials/footer');
-    }
+	public function index()
+	{
+		$this->load->view('partials/header');
+		$this->load->view('partials/admin/navbar');
+		$this->load->view('partials/admin/sidebar');
+		$this->load->view('admin/import/index');
+		$this->load->view('partials/footer');
+	}
 
 	public function ImportStudent()
-	{
-		// Check if the form is submitted
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			// Check if a file is selected
-			if (isset($_FILES["data_upload"]) && $_FILES["data_upload"]["error"] == UPLOAD_ERR_OK) {
-				// Get the temporary file name
-				$file_tmp = $_FILES["data_upload"]["tmp_name"];
-				
-				// Load the CSV file using PhpSpreadsheet
-				$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($file_tmp);
-				
-				// Get the first worksheet
-				$worksheet = $spreadsheet->getActiveSheet();
-				
-				// Iterate through rows starting from the second row (assuming the first row contains headers)
-				foreach ($worksheet->getRowIterator(2) as $row) {
-					// Get the cell values
-					$cellIterator = $row->getCellIterator();
-					$cellIterator->setIterateOnlyExistingCells(false); // Loop through all cells, even if some are empty
-					
-					// Initialize variables to hold data
-					$data = [];
-					
-					// Iterate through cells
-					foreach ($cellIterator as $cell) {
-						$data[] = $cell->getValue();
-					}
-					
-					// Insert data into the students table
-					$student_data = [
-						'first_name' => $data[0], // Assuming first name is in the first column
-						'middle_name' => $data[1], // Assuming middle name is in the second column
-						'last_name' => $data[2], // Assuming last name is in the third column
-					];
-					
-					// Insert data into the students table
-					$this->Student->insertTestData('studentss', $student_data);
+{
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_FILES["data_upload"]) && $_FILES["data_upload"]["error"] == UPLOAD_ERR_OK) {
+            $file_tmp = $_FILES["data_upload"]["tmp_name"];
+            
+            // Check if the file has a CSV format
+            $file_extension = pathinfo($_FILES["data_upload"]["name"], PATHINFO_EXTENSION);
+            if ($file_extension != 'csv') {
+                $this->session->set_flashdata('fail', 'Please upload a CSV file only.');
+                redirect($_SERVER['HTTP_REFERER']);
+            }
+
+            $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($file_tmp);
+
+            $worksheet = $spreadsheet->getActiveSheet();
+
+			foreach ($worksheet->getRowIterator(2) as $row) {
+				$cellIterator = $row->getCellIterator();
+				$cellIterator->setIterateOnlyExistingCells(false); 
+			
+				$data = [];
+			
+				// Iterate through cells
+				foreach ($cellIterator as $cell) {
+					$data[] = $cell->getValue();
 				}
+			
+				// Check if all necessary columns are present
+				if (count($data) < 19) { // Assuming there are 19 columns required for a student's data
+					$this->session->set_flashdata('fail', 'Please check the CSV file columns and data.');
+					redirect($_SERVER['HTTP_REFERER']);
+				}
+			
+				$data = [
+					'student_id' => $data[0], 
+					'first_name' => $data[1], 
+					'middle_name' => $data[2], 
+					'last_name' => $data[3], 
+					'email' => $data[4], 
+					'gender' => $data[5], 
+					'civil_status' => $data[6], 
+					'barangay_id' => $data[7], 
+					'municipal_id' => $data[8], 
+					'province_id' => $data[9], 
+					'campus_id' => $data[10], 
+					'course_id' => $data[11], 
+					'year_level' => $data[12], 
+					'father_name' => $data[13], 
+					'mother_name' => $data[14], 
+					'contact' => $data[15], 
+					'classification' => $data[16], 
+					'previous_school' => $data[17], 
+					'previous_school_year' => $data[18], 
+				];
 				
-				// Redirect to a success page or display a success message
-				redirect('dashboard');
-			} else {
-				// Handle file upload errors
-				// Redirect back to the import page with an error message
-				redirect('imports?error=file_upload_failed');
-			}
-		} else {
-			// Redirect back to the import page
-			redirect('imports');
-		}
-	}
-	
+				$this->Student->insert_student($data);
+			}			
+
+            $this->session->set_flashdata('success', 'Student Successfully Imported.');
+            redirect($_SERVER['HTTP_REFERER']);
+        } else {
+            $this->session->set_flashdata('fail', 'Please check the CSV file Columns and Data.');
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    } else {
+        redirect('dashboards');
+    }
+}
+
+
 }

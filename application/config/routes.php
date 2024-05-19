@@ -73,3 +73,6 @@ $route['login'] = 'Auth/login';
 $route['admin/import'] = 'Imports';
 
 
+//Reports
+$route['admin/report'] = 'Reports';
+

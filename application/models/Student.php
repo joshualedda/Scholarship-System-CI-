@@ -48,10 +48,58 @@ class Student extends CI_Model {
 }
 
 	
-public function insertTestData($table, $data) {
-	// Insert data into the specified table
-	$this->db->insert($table, $data);
+public function insertTestData($student_data) {
+	// Insert student_data into the specified table
+	$this->db->insert('studentss', $student_data);
 }
+
+
+// Report Generate Function
+
+public function getStudentsReport($province_id, $municipal_id, $barangay_id, $campus_id, $course_id, $semester, $school_year, $type2, $scholarship_id2) {
+    // Construct your SQL query based on the provided criteria
+    $sql = "SELECT * FROM students WHERE 1 = 1";
+    
+    // Add conditions based on the provided parameters
+    if ($province_id) {
+        $sql .= " AND province_id = $province_id";
+    }
+    if ($municipal_id) {
+        $sql .= " AND municipal_id = $municipal_id";
+    }
+    if ($barangay_id) {
+        $sql .= " AND barangay_id = $barangay_id";
+    }
+    if ($campus_id) {
+        $sql .= " AND campus_id = $campus_id";
+    }
+    if ($course_id) {
+        $sql .= " AND course_id = $course_id";
+    }
+    if ($semester) {
+        $sql .= " AND semester = $semester";
+    }
+    if ($school_year) {
+        $sql .= " AND school_year = '$school_year'";
+    }
+    if ($type2) {
+        $sql .= " AND type2 = $type2";
+    }
+    if ($scholarship_id2) {
+        $sql .= " AND scholarship_id2 = $scholarship_id2";
+    }
+
+    // Execute the query
+    $query = $this->db->query($sql);
+    
+    // Check if the query was successful
+    if ($query) {
+        return $query->result_array(); // Return the result set
+    } else {
+        return false; // Return false if there was an error
+    }
+}
+
 	
 	
 }
