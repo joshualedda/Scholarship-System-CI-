@@ -76,3 +76,12 @@ $route['admin/import'] = 'Imports';
 //Reports
 $route['admin/report'] = 'Reports';
 
+
+// Users
+$route['admin/users'] = 'Users';
+//Create
+$route['admin/users/create'] = 'Users/create';
+//vierw
+$route['admin/users/view/(:any)'] = 'Users/show/$1';
+//edit
+$route['admin/users/edit/(:any)'] = 'Users/edit/$1';

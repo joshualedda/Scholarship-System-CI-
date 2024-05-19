@@ -29,7 +29,8 @@
   
 
   <li class="nav-heading">Pages</li>
-  <li class="nav-item">
+  
+	<li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-gear-fill"></i><span>System Settings</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
@@ -75,25 +76,23 @@
 
 
   
-  <li class="nav-item">
-	<a class="nav-link collapsed" data-bs-target="#users" data-bs-toggle="collapse" href="#">
-	<i class="bi bi-person-circle"></i><span>User Settings</span><i class="bi bi-chevron-down ms-auto"></i>
-	</a>
-	<ul id="users" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-	  <li>
-		<a href="<?=base_url('admin/scholarships') ?>">
-		  <i class="bi bi-circle"></i><span>Profile</span>
-		</a>
-	  </li>
-	  
-	  <li>
-	<a href="<?=base_url('admin/campus') ?>">
-		  <i class="bi bi-circle"></i><span>Users</span>
-		</a>
-	  </li>
-	  
-	</ul>
-  </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#users-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-gear-fill"></i><span>User Settings</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="users-nav" class="nav-content collapse <?= ($this->uri->segment(2) == 'users') ? 'show' : '' ?>" data-bs-parent="#sidebar-nav">
+        <li>
+            <a href="<?= base_url('admin/users') ?>" class="<?= ($this->uri->segment(2) == 'users') ? 'text-primary' : '' ?>">
+                <i class="bi bi-circle"></i><span>Users</span>
+            </a>
+        </li>
+   
+			
+    </ul>
+</li>
+
+
 
 
 

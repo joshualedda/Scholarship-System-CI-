@@ -10,4 +10,9 @@ class Auth extends CI_Controller
 		$this->load->view('admin/auth/login');
 		$this->load->view('partials/footer');
 	}
+
+	public function loginProcess()
+	{
+		
+	}
 }
