@@ -12,7 +12,6 @@
 
 
   <div class="d-flex justify-content-end my-2">
-    <a href="importStudent.php" class="btn btn-success">Import</a>
     <a href="<?=base_url('admin/student/create') ?>" class="btn btn-success mx-2">Add</a>
 
   </div>

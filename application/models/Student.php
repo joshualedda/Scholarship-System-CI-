@@ -48,7 +48,10 @@ class Student extends CI_Model {
 }
 
 	
-	
+public function insertTestData($table, $data) {
+	// Insert data into the specified table
+	$this->db->insert($table, $data);
+}
 	
 	
 }

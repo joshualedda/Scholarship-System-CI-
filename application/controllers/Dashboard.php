@@ -20,4 +20,14 @@ class Dashboard extends CI_Controller {
 		$this->load->view('admin/dashboard', $data);
 		$this->load->view('partials/footer');
 	}
+
+	public function getCampusStudentData()
+	{
+		$scholarship_id = $this->input->get('scholarship_id');
+		$school_year = $this->input->get('school_year');
+	
+		$data = $this->Scholarship->getCampusStudentCounts($scholarship_id, $school_year);
+		echo json_encode($data);
+	}
+	
 }

@@ -69,3 +69,7 @@ $route['admin/backup'] = 'Backup';
 // Login
 $route['login'] = 'Auth/login';
 
+// Imports
+$route['admin/import'] = 'Imports';
+
+

@@ -89,7 +89,7 @@ class Scholarship extends CI_Model {
 	public function totalGovernmentStudent()
     {
         // Custom SQL query to count scholarships where type = 0
-        $query = $this->db->query("SELECT COUNT(*) AS totalGovStudent FROM grantees WHERE type = 0 AND status = 0");
+        $query = $this->db->query("SELECT COUNT(*) AS totalGovStudent FROM grantees WHERE status = 0");
         $result = $query->row();
         return $result->totalGovStudent;
     }
@@ -97,10 +97,41 @@ class Scholarship extends CI_Model {
 	public function totalPrivateStudent()
     {
         // Custom SQL query to count scholarships where type = 0
-        $query = $this->db->query("SELECT COUNT(*) AS totalGovScholar FROM scholarship WHERE type = 0 AND status = 0");
+        $query = $this->db->query("SELECT COUNT(*) AS totalGovScholar FROM scholarship WHERE status = 1");
         $result = $query->row();
         return $result->totalGovScholar;
     }
 
+
+	// Bar Chart
+	public function getCampusStudentCounts($scholarship_id = null, $school_year = null)
+	{
+		$sql = "SELECT 
+				campus.name AS campus_name, 
+				COUNT(grantees.student_id) AS student_count
+			FROM 
+				campus
+			LEFT JOIN 
+				students ON students.campus_id = campus.id
+			LEFT JOIN 
+				grantees ON grantees.student_id = students.id
+			WHERE 
+				1 = 1
+		";
+	
+		if ($scholarship_id) {
+			$sql .= " AND grantees.scholarship_id = " . $this->db->escape($scholarship_id);
+		}
+	
+		if ($school_year) {
+			$sql .= " AND grantees.school_year = " . $this->db->escape($school_year);
+		}
+	
+		$sql .= " GROUP BY campus.name";
+	
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	
 
 }
