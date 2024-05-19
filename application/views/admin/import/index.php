@@ -52,7 +52,7 @@
                         <div class="d-flex justify-content-end mx-2 ">
                             <span class="text-sm mt-2 text-danger">Importing might take a while, please wait.</span>
 
-                            <button name="submit" type="submit" class="btn btn-success btn-md mx-2">
+                            <button name="submit" type="submit" class="btn btn-primary btn-md mx-2">
                                 Import Students
                             </button>
 

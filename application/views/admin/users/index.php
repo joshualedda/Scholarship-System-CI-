@@ -12,7 +12,7 @@
 
 
 	<div class="d-flex justify-content-end my-2">
-		<a href="<?= base_url('admin/users/create') ?>" class="btn btn-success mx-2">Add</a>
+		<a href="<?= base_url('admin/users/create') ?>" class="btn btn-primary mx-2">Add</a>
 	</div>
 
 

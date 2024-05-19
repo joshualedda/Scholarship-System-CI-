@@ -42,7 +42,7 @@
 
                         <div class="d-flex justify-content-end mx-2 ">
 
-                            <button name="backup" class="btn btn-success btn-md mx-2">
+                            <button name="backup" class="btn btn-primary btn-md mx-2">
                                 Backup
                             </button>
 

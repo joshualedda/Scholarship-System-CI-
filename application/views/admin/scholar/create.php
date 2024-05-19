@@ -11,7 +11,7 @@
 		</div>
 	</div>
 	<div class="d-flex justify-content-end my-2">
-		<a href="<?= base_url('admin/scholarships') ?>" class="btn btn-success">Back</a>
+		<a href="<?= base_url('admin/scholarships') ?>" class="btn btn-primary">Back</a>
 	</div>
 
 	<div class="alert alert-success" id="message" style="display: none;">
@@ -60,7 +60,7 @@
 
 				<div class="col-12 d-flex justify-content-end align-items-center">
 
-					<button class="btn btn-success mt-2 ml-2" type="submit" name="submit">Add Scholarship</button>
+					<button class="btn btn-primary mt-2 ml-2" type="submit" name="submit">Add Scholarship</button>
 				</div>
 
 

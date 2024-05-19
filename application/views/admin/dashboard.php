@@ -25,7 +25,7 @@
 
 								<div class="d-flex align-items-center">
 									<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-										<i class="bi bi-cart"></i>
+									<i class="bi bi-bank2"></i>
 									</div>
 									<div class="ps-3">
 										<h6><?= $totalGovScholar ?></h6>
@@ -48,7 +48,7 @@
 
 								<div class="d-flex align-items-center">
 									<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-										<i class="bi bi-currency-dollar"></i>
+									<i class="bi bi-cash"></i>
 									</div>
 									<div class="ps-3">
 										<h6><?= $totalPrivateScholar ?></h6>
@@ -72,7 +72,7 @@
 
 								<div class="d-flex align-items-center">
 									<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-										<i class="bi bi-people"></i>
+									<i class="bi bi-currency-exchange"></i>
 									</div>
 									<div class="ps-3">
 										<h6>
@@ -100,7 +100,7 @@
 
 								<div class="d-flex align-items-center">
 									<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-										<i class="bi bi-people"></i>
+									<i class="bi bi-coin"></i>
 									</div>
 									<div class="ps-3">
 										<h6>
@@ -130,7 +130,7 @@
 
 								<div class="d-flex align-items-center">
 									<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-										<i class="bi bi-people"></i>
+									<i class="bi bi-person-check"></i>
 									</div>
 									<div class="ps-3">
 										<h6>
@@ -155,7 +155,7 @@
 
 								<div class="d-flex align-items-center">
 									<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-										<i class="bi bi-people"></i>
+									<i class="bi bi-person-fill-lock"></i>
 									</div>
 									<div class="ps-3">
 										<h6>
@@ -177,7 +177,7 @@
 
 
 					<!-- Reports -->
-					<div class="col-12">
+					<div class="col-6">
 						<div class="card">
 
 
@@ -188,19 +188,19 @@
 
 
 								<div class="row">
-									<div class="col-md-2">
+									<div class="col-md-3">
 										<select class="form-select" name="type1" id="type1" required>
-											<option value="">Scholarship Type</option>
+											<option value="">Type</option>
 											<option value="0">Private</option>
 											<option value="1">Public</option>
 										</select>
 									</div>
-									<div class="col-md-2">
+									<div class="col-md-3">
 										<select class="form-select" name="scholarship_id1" id="scholarship_id1" required>
 											<option value="">Scholarships</option>
 										</select>
 									</div>
-									<div class="col-md-2">
+									<div class="col-md-3">
 										<select class="form-control" name="school_year" required id="school_year">
 											<option selected value="">School Year</option>
 											<option value="2023-2024">2024-2025</option>

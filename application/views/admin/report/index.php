@@ -128,7 +128,7 @@
 
 				<div class="col-12 d-flex justify-content-end align-items-center">
 
-					<button class="btn btn-success mt-2 ml-2" type="submit" name="submit">Generate Report</button>
+					<button class="btn btn-primary mt-2 ml-2" type="submit" name="submit">Generate Report</button>
 				</div>
 
 
